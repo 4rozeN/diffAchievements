@@ -24,7 +24,7 @@ while True:
         print("无效的输入，请选择 'Chinese' 或 'English'，即 'c' 或 'e'。")
 
 # 通过终端输入获取Steam个人资料URL，默认值为一个示例URL
-url = input("请输入Steam个人资料URL（例如：https://steamcommunity.com/id/430426/stats/2358720/achievements/）：")
+url = input("请输入Steam个人资料URL（例如：https://steamcommunity.com/id/43xxx123/stats/2358720/achievements/）：")
 
 # 询问是否使用代理
 while True:
