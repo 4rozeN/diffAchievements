@@ -1,113 +1,107 @@
-# [diffAchievements](https://github.com/4rozeN/diffAchievements)
+# diffAchievements
+
+项目地址Github：[diffAchievements](https://github.com/4rozeN/diffAchievements)
 
 ## 关于
 
-diffAchievements 是一个获取 Steam 某一个特定的游戏的已解锁成就与全成就列表进行比对得到未解锁成就列表的工具脚本。旨在帮助玩家更好的达成某游戏的全成就，或是进行查漏补缺。
+diffAchievements 是一个获取 Steam 某一个特定的游戏的已解锁成就与全成就列表进行比对得到未解锁成就列表的工具脚本。
+
+旨在帮助玩家更好的达成某游戏的全成就，或是进行查漏补缺。
 
 ## 我为什么需要它
 
-由于 Steam 会根据你的游戏进度或者说成就进度，将一些成就隐藏起来，这导致你无法查看全部成就详情，哪怕能查看，如果游戏成就项足够多，玩家想要知道自己还剩具体的哪些成就没完成将是一个工作负担较大的事。
+由于 Steam 会根据你的游戏进度或者说成就进度，将一些成就隐藏起来，这导致你无法查看全部成就详情，哪怕能查看，**如果游戏成就项足够多，玩家想要知道自己还剩具体的哪些成就没完成将是一个工作负担较大的事。**
 
-该脚本可以帮你省去查找已解锁成就和比对环节，你只需为脚本提供可供比对的全成就文档。
+该脚本可以帮你省去查找已解锁成就和比对环节，你只需为脚本提供你的某个游戏的当前成就进度页面地址。
+
+该地址应当是：
+
+```bash
+https://steamcommunity.com/id/430426/stats/2358720/?tab=achievements
+```
+
+示例图如下：
+<img src="https://gitee.com/CSJ021005/f0ur_lin_-picgo/raw/master/202501181826412.png" alt="image-20250118182611298" style="zoom:50%;" />
+
+该页面可以在`个人资料->所有最近玩过的->我的游戏统计数据->我的成就`中找到：
+<img src="https://gitee.com/CSJ021005/f0ur_lin_-picgo/raw/master/202501181841996.png" alt="image-20250118184103953" style="zoom:50%;" />
+<img src="https://gitee.com/CSJ021005/f0ur_lin_-picgo/raw/master/202501181841155.png" alt="image-20250118184157100" style="zoom:50%;" />
+<img src="https://gitee.com/CSJ021005/f0ur_lin_-picgo/raw/master/202501181843856.png" alt="image-20250118184303810" style="zoom:50%;" />
 
 ## 设置成就可见性
 
 为了可以通过网络请求访问到你的游戏成就详情，请在 Steam 的隐私设置中将游戏详情一项设置为公开。
 
-它的访问链接应当是：
+这将使得你的某个游戏成就进度可以通过以下链接进行访问：
 
 ```bash
 https://steamcommunity.com/id/yourId/edit/settings
 ```
 
-## 准备全成就列表文档
+该设置示例图为：
+<img src="https://gitee.com/CSJ021005/f0ur_lin_-picgo/raw/master/202501181828813.png" alt="image-20250118182813774" style="zoom:50%;" />
 
-由于 Steam 会根据你的游戏进度或者说成就进度，将一些成就隐藏起来，所以你无法通过 Steam 成就详情页得到全成就列表，只得通过第三方网站或服务得到。
+## 准备全成就文档
 
-例如wiki、攻略组等等，由于各个游戏全成就列表来源无法统一，这里仅介绍脚本要求的全成就文档格式（可见仓库示例文档`all_achievements.txt`）：
+此项废弃，现在并不需要你准备一份全成就的列表，脚本将自动通过全球玩家成就表进行解析。
 
-```bash
-下降尘凡第一难：完成序章
-敲敲打打第二难：在披挂铸造打造一件装备
-山中斗狼第三难：击败灵虚子
-吸存运用第四难：击败浪里个浪并吸收精魄
-真个壮怀第五难：用泡酒物泡制一壶酒
-长蛇隐迹第六难：击败白衣秀士
-...
-```
-
-即是`成就名：成就描述`，请注意`：`为中文冒号而非英文，且一行只有一个成就。
+**请注意！**==某些游戏在全球成就表下部分成就的说明**会被隐藏**，故脚本保存的部分也会隐藏。若有需要，只得自行进行搜索成就详情说明。==
 
 ## 使用
 
-将仓库 clone 或下载到本地目录中，使用python命令运行：
+将仓库 clone 或下载到本地目录中，例如：
 
 ```bash
+git clone https://github.com/4rozeN/diffAchievements.git
+```
+
+若无法下载，可以点这里使用蓝奏云进行下载。
+
+进入项目目录，使用python命令运行：
+
+```shell
 python diffAchievements.py
 ```
 
 **该命令要求 python 拥有环境变量。**
 
-## 一份示例
+根据提示输入必要信息即可。
 
-```bash
+## 一份使用示例
+
+```shell
 PS E:\Coding\py\diffAchievements> python .\diffAchievements.py
 请选择steam响应语言（Chinese/English）：c
 已选择中文作为Steam响应语言。
-请输入Steam个人资料URL（例如：https://steamcommunity.com/id/43xxx123/stats/2358720/achievements/）：https://steamcommunity.com/id/yourID/stats/2358720/achievements/
+请输入游戏的个人成就进度页面地址URL（例如：https://steamcommunity.com/id/43xxx123/stats/2358720/achievements/）：https://steamcommunity.com/id/430426/stats/578080/?tab=achievements
 是否开启代理？(y/n): y
 请输入代理地址（例如：http://127.0.0.1:7897）：http://127.0.0.1:7897
 已开启代理：http://127.0.0.1:7897
 
 请求成功，正在解析页面...
 
-正在将已解锁的成就保存到当前目录下的 unlocked_achievements.txt 文件中...
+正在将 unlocked_achievements 保存到当前目录下的 unlocked_achievements.txt 文件中...
 unlocked_achievements.txt 文件已保存。
-找到已解锁的成就总数为: 56 项。
+将保存的成就总数为: 19 项。
 
-全成就列表应在当前目录下的 all_achievements.txt 文件中，内容格式预期为"成就名：成就描述"（：为中文冒号，""为英文双引号仅作标识，无实际意义。），每行一个成就。  
-开始读取文档...
+请求成功，正在解析页面...
 
-文档内有效计数为: 81 项。
+正在将 all_achievements 保存到当前目录下的 all_achievements.txt 文件中...
+all_achievements.txt 文件已保存。
+将保存的成就总数为: 36 项。
 
-开始比对已解锁的成就和文档内的全成就...
+找到的差异成就总数为: 17 项。
 
-比对终了。
-
-未解锁的成就:
-成就名称: 千里报国二十四难, 描述: 完成鼠三王子支线
-成就名称: 捶打神功三十难, 描述: 在寅虎处升级披挂
-成就名称: 新种新苗三十二难, 描述: 在辰龙处收获作物
-成就名称: 魔将神归三十五难, 描述: 收集四个魔将魂魄
-成就名称: 齐齐整整四十五难, 描述: 击败四个蝎太子、毒敌大王
-成就名称: 巧线死结四十七难, 描述: 在金光苑撕毁最后一张紫符
-成就名称: 云游有伴四十九难, 描述: 将初始葫芦在葫芦仙人处升至满级
-成就名称: 壮志未酬五十一难, 描述: 完成马哥支线
-成就名称: 种子齐备五十二难, 描述: 获得全部种子
-成就名称: 入定蒲团五十五难, 描述: 完成所有打坐处
-成就名称: 大妖尽伏五十七难, 描述: 收集全部精魄
-成就名称: 十全十美六十三难, 描述: 获得全部变化
-成就名称: 美禄千钟六十四难, 描述: 获得全部酒
-成就名称: 般般件件六十七难, 描述: 获得全部珍玩
-成就名称: 五蕴结丹六十八难, 描述: 获得五蕴后与戌狗对话
-成就名称: 当饭吃哩六十九难, 描述: 获得全部金丹
-成就名称: 半个不少七十三难, 描述: 解锁全部影神录
-成就名称: 六根齐聚七十四难, 描述: 开启二周目
-成就名称: 法性颇通七十五难, 描述: 获得全部法术
-成就名称: 收了葫芦七十六难, 描述: 获得全部葫芦
-成就名称: 心有秘方七十七难, 描述: 获得全部药方
-成就名称: 饮食周全七十八难, 描述: 获得全部泡酒物
-成就名称: 衣冠隆盛七十九难, 描述: 获得全部装备
-成就名称: 夹枪带棒八十难, 描述: 获得全部武器
-成就名称: 全始全终八十一难, 描述: 解锁其他成就后自动获得
-
-未解锁的成就总数: 25 项。
-
-正在将未解锁的成就保存到当前目录下的 diff_achievements.txt 文件中...
-
+正在将 diff_achievements 保存到当前目录下的 diff_achievements.txt 文件中...
 diff_achievements.txt 文件已保存。
+将保存的成就总数为: 17 项。
 
 程序终了。
 PS E:\Coding\py\diffAchievements>
 ```
 
+最终将生成三份txt文件于脚本同目录下：
+
+1. `all_achievements.txt`
+2. `diff_achievements.txt`
+3. `unlocked_achievements.txt`
