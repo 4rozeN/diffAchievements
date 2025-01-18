@@ -55,7 +55,7 @@ https://steamcommunity.com/id/yourId/edit/settings
 git clone https://github.com/4rozeN/diffAchievements.git
 ```
 
-若无法下载，可以点这里使用蓝奏云进行下载。
+若无法下载，可以[点这里](https://wwte.lanzouu.com/i1Xyv2la600f)使用蓝奏云进行下载。
 
 进入项目目录，使用python命令运行：
 
